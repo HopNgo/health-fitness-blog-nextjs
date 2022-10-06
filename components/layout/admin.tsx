@@ -109,17 +109,6 @@ export function AdminLayout({ children }: IAdminLayoutProps) {
               <ListItem disablePadding>
                 <ListItemButton
                   sx={{ padding: "10px 15px !important" }}
-                  onClick={() => router.push("/admin/editor")}
-                >
-                  <ListItemIcon>
-                    <EditIcon sx={{ color: "white" }} />
-                  </ListItemIcon>
-                  <ListItemText primary={"Text Editor"} />
-                </ListItemButton>
-              </ListItem>
-              <ListItem disablePadding>
-                <ListItemButton
-                  sx={{ padding: "10px 15px !important" }}
                   onClick={() => handleClickLogout()}
                 >
                   <ListItemIcon>

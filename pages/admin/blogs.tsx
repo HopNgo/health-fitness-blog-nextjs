@@ -70,7 +70,6 @@ export default function AdminPage(props: IAdminPageProps) {
         <Typography
           component="h1"
           variant="h4"
-          fontWeight="700"
           color="primary.main"
           textAlign="center"
         >
