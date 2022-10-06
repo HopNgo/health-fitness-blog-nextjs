@@ -1,4 +1,4 @@
-# NEXTJS + MUI - Building frontend for website health & fitness blogs
+# NEXTJS + Material UI - Building frontend for website health & fitness blogs
 
 ## Requirements
 
