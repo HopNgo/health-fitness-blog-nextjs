@@ -1,14 +1,12 @@
-import * as React from "react";
+import { Post } from "@/models";
 import {
-  Box,
-  Stack,
-  Typography,
   Card,
   CardContent,
-  Divider,
+  Divider, Stack,
+  Typography
 } from "@mui/material";
-import { Post } from "@/models";
 import { format } from "date-fns";
+import * as React from "react";
 
 export interface IPostCardProps {
   post: Post;

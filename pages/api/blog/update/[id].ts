@@ -1,9 +1,6 @@
-import { cloneDeep } from "lodash";
-import { Post } from "@/models";
-import { getBlogListFromMDBlog } from "@/utils";
+import fs from "fs";
 import { NextApiRequest, NextApiResponse } from "next";
 import path from "path";
-import fs from "fs";
 type Data = {
   message: string;
 };

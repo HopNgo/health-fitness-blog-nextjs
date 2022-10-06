@@ -1,9 +1,8 @@
-import { sortMaxToMin } from "./sort";
-import matter from "gray-matter";
-import { convertContentToHtml } from "./convertContentToHtml";
 import { Post } from "@/models";
 import fs from "fs";
+import matter from "gray-matter";
 import path from "path";
+import { convertContentToHtml } from "./convertContentToHtml";
 
 const BLOG_FOLDER = path.join(process.cwd(), "blogMarkdown");
 

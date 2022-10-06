@@ -1,8 +1,7 @@
-import { blogApi } from "@/apiClient";
 import { Seo } from "@/components/common";
 import { MainLayout } from "@/components/layout";
 import { Post } from "@/models";
-
+import { getBlogListFromMDBlog } from "@/utils";
 import { Box, Container, Stack, Typography } from "@mui/material";
 import { format } from "date-fns";
 import { GetStaticPaths, GetStaticProps, GetStaticPropsContext } from "next";
@@ -14,6 +13,7 @@ export interface IBlogDetailPageProps {
 }
 
 export default function BlogDetailPage({ post }: IBlogDetailPageProps) {
+  console.log(post);
   return (
     <Box pt="60px">
       <Seo
@@ -140,15 +140,14 @@ export default function BlogDetailPage({ post }: IBlogDetailPageProps) {
 }
 
 export const getStaticPaths: GetStaticPaths = async () => {
-  const { data } = await blogApi.getAllPostList();
+  const postList = await getBlogListFromMDBlog();
 
-  const paths: { params: { slug: string } }[] = data.postList.map(
-    (post: Post) => ({ params: { slug: post.slug } })
-  );
-  console.log(paths);
+  const paths: { params: { slug: string } }[] = postList.map((post: Post) => ({
+    params: { slug: post.slug },
+  }));
 
   return {
-    paths: paths,
+    paths,
     fallback: false,
   };
 };
@@ -158,14 +157,15 @@ export const getStaticProps: GetStaticProps = async (
 ) => {
   const slug: string = context.params?.slug as string;
 
-  const { data } = await blogApi.getPostDetail(slug);
+  // get All postList
+  const postList = await getBlogListFromMDBlog();
 
-  const postDetaiPageProps = {
-    post: data.postDetail,
-  };
+  const postDetail = postList.find((post: Post) => post.slug === slug);
+
+  if (!postDetail) return { notFound: true };
 
   return {
-    props: postDetaiPageProps,
+    props: { post: postDetail },
   };
 };
 

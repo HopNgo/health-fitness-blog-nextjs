@@ -1,6 +1,5 @@
 import { useAuth } from "@/hooks";
 import LOGO from "@/public/images/logo.svg";
-import EditIcon from "@mui/icons-material/Edit";
 import LogoutIcon from "@mui/icons-material/Logout";
 import NewspaperIcon from "@mui/icons-material/Newspaper";
 import Box from "@mui/material/Box";

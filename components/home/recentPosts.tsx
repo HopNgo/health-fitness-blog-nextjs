@@ -1,14 +1,10 @@
-import * as React from "react";
+import { Post } from "@/models";
 import {
-  Box,
-  Stack,
-  Link as MuiLink,
-  Typography,
-  Container,
+  Box, Container, Link as MuiLink, Stack, Typography
 } from "@mui/material";
 import Link from "next/link";
+import * as React from "react";
 import PostCard from "./postCard";
-import { Post } from "@/models";
 
 export interface IRecentPostsSectionProps {
   twoRecentPosts: Post[];

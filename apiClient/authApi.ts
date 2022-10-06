@@ -1,4 +1,3 @@
-import axios from "axios";
 import { LoginPayload } from "@/models";
 import { axiosClient } from "./axiosClient";
 

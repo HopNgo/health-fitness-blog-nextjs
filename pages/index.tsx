@@ -1,11 +1,11 @@
-import { blogApi } from "@/apiClient";
 import { Seo } from "@/components/common";
 import {
   FeatureWorksSection,
   HeroSection,
-  RecentPostsSection,
+  RecentPostsSection
 } from "@/components/home";
 import { Post } from "@/models";
+import { getBlogListFromMDBlog } from "@/utils";
 import { Box } from "@mui/material";
 import { MainLayout } from "components/layout";
 import { GetStaticProps } from "next";
@@ -35,12 +35,12 @@ const HomePage = ({ twoRecentPosts }: HomePageProps) => {
 };
 
 export const getStaticProps: GetStaticProps = async () => {
-  const { data } = await blogApi.getTwoRecentPosts();
-  const homePageProps = {
-    twoRecentPosts: data.postList,
-  };
+  const postList = await getBlogListFromMDBlog();
+
+  const twoRecentPostsArray = postList.slice(0, 2);
+
   return {
-    props: homePageProps,
+    props: { twoRecentPosts: twoRecentPostsArray },
   };
 };
 

@@ -5,10 +5,6 @@ export const ROUTE_LIST: RouteHeader[] = [
     path: "/",
   },
   {
-    label: "Work",
-    path: "/work",
-  },
-  {
     label: "Blog",
     path: "/blog",
   },

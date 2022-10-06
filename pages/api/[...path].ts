@@ -1,6 +1,7 @@
-import type { NextApiRequest, NextApiResponse } from "next";
-import httpProxy, { ProxyResCallback } from "http-proxy";
+import NextCors from "nextjs-cors";
 import Cookies from "cookies";
+import httpProxy from "http-proxy";
+import type { NextApiRequest, NextApiResponse } from "next";
 
 type Data = {
   name?: string;
@@ -15,10 +16,16 @@ export const config = {
 
 const proxy = httpProxy.createProxyServer();
 
-export default function handler(
+export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse<Data>
 ) {
+  await NextCors(req, res, {
+    // Options
+    methods: ["GET", "HEAD", "PUT", "PATCH", "POST", "DELETE"],
+    origin: "*",
+    optionsSuccessStatus: 200, // some legacy browsers (IE11, various SmartTVs) choke on 204
+  });
   return new Promise((resolve) => {
     //convert cookies to Authorization header
     const cookies = new Cookies(req, res);

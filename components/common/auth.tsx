@@ -1,6 +1,6 @@
 import { useAuth } from "@/hooks";
-import { ReactNode, useEffect } from "react";
 import { useRouter } from "next/router";
+import { ReactNode } from "react";
 import { Loading } from "./loading";
 
 export interface IAuthProps {

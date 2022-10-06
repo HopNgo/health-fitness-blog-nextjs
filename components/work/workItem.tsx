@@ -1,8 +1,8 @@
 import { Work } from "@/models";
 import { Box, Divider, Stack, Typography } from "@mui/material";
+import { format } from "date-fns";
 import Image from "next/image";
 import * as React from "react";
-import { format } from "date-fns";
 export interface IWorkItemProps {
   work: Work;
 }
@@ -18,12 +18,17 @@ export default function WorkItem({ work }: IWorkItemProps) {
         gap="17px"
         alignItems="center"
       >
-        <Box width={{ xs: "100%", md: "246px" }} flexShrink={0}>
+        <Box
+          width={{ xs: "100%", md: "246px" }}
+          borderRadius="16px"
+          overflow="hidden"
+          flexShrink={0}
+        >
           <Image
             src={work.thumbnailUrl}
             layout="responsive"
             width="246px"
-            height="180px"
+            height="200px"
             objectFit="cover"
             alt="not found"
           />

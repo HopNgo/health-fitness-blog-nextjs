@@ -1,8 +1,8 @@
-import * as React from "react";
-import { Stack, Box, Typography, Button, Container } from "@mui/material";
+import { Box, Button, Container, Stack, Typography } from "@mui/material";
 import Image from "next/image";
-import avatar from "public/images/healthy-lifestyle.jpg";
 import Link from "next/link";
+import avatar from "public/images/healthy-lifestyle.jpg";
+import * as React from "react";
 
 export function HeroSection() {
   return (

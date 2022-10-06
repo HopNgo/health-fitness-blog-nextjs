@@ -1,6 +1,7 @@
 import Cookies from "cookies";
 import httpProxy, { ProxyResCallback } from "http-proxy";
 import type { NextApiRequest, NextApiResponse } from "next";
+import NextCors from "nextjs-cors";
 type Data = {
   name?: string;
   message?: string;
@@ -14,10 +15,17 @@ export const config = {
 
 const proxy: httpProxy = httpProxy.createProxyServer();
 
-export default function handler(
+export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse<Data>
 ) {
+  await NextCors(req, res, {
+    // Options
+    methods: ["GET", "HEAD", "PUT", "PATCH", "POST", "DELETE"],
+    origin: "*",
+    optionsSuccessStatus: 200, // some legacy browsers (IE11, various SmartTVs) choke on 204
+  });
+
   if (req.method !== "POST")
     return res.status(404).json({ message: "Method Not Supported" });
 
@@ -45,7 +53,7 @@ export default function handler(
             sameSite: "lax",
             expires: new Date(expiredAt),
           });
-          
+
           (res as NextApiResponse)
             .status(200)
             .json({ message: "Login Successfully" });

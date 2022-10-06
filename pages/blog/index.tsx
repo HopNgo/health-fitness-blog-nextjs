@@ -23,7 +23,7 @@ export default function BlogListPage({
   };
 
   useEffect(() => {
-    Router.push(`/blog/?page=${page}`);
+    Router.push(`/blog?page=${page}`);
     console.log("render useeffect");
   }, [page]);
 
@@ -68,13 +68,8 @@ export const getServerSideProps: GetServerSideProps = async (
 
   const { data } = await blogApi.getPostListPerPage(page, 4);
 
-  const postListPageProps = {
-    postList: data.postList,
-    totalPage: data.pagination.total,
-  };
-
   return {
-    props: postListPageProps,
+    props: { postList: data.postList, totalPage: data.pagination.total },
   };
 };
 

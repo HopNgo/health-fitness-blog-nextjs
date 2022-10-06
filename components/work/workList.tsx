@@ -11,7 +11,7 @@ export function WorkList({ workList }: IWorkListProps) {
   if (workList.length === 0) return null;
   return (
     <Box>
-      {workList.slice(0, 3).map((work) => (
+      {workList.map((work) => (
         <WorkItem key={work.id} work={work} />
       ))}
     </Box>

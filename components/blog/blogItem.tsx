@@ -1,7 +1,7 @@
 import { Post } from "@/models";
 import { Box, Divider, Stack, Typography } from "@mui/material";
-import * as React from "react";
 import { format } from "date-fns";
+import * as React from "react";
 export interface IBlogItemProps {
   post: Post;
 }

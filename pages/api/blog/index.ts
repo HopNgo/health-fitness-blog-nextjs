@@ -1,6 +1,5 @@
-import { sortMaxToMin } from "@/utils";
 import { Post } from "@/models";
-import { getBlogListFromMDBlog } from "@/utils";
+import { getBlogListFromMDBlog, sortMaxToMin } from "@/utils";
 import { cloneDeep } from "lodash";
 import { NextApiRequest, NextApiResponse } from "next";
 
@@ -11,7 +10,7 @@ type DataSuccess = {
   postList: Post[];
 };
 
-export default function handler(
+export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse<DataError | DataSuccess>
 ) {
@@ -20,46 +19,35 @@ export default function handler(
   const _limit: number = Number(req.query._limit as string);
 
   //get postList from MarkdownBlog file
-  getBlogListFromMDBlog()
-    .then((data: Post[]) => {
-      //clone and get some necessary field in postListClone
-      const postListClone: Post[] = cloneDeep(data).map((post: Post) => ({
-        id: post.id,
-        description: post.description,
-        title: post.title,
-        tagList: post.tagList,
-        publishedDate: post.publishedDate,
-        slug: post.slug,
-        author: post.author,
-      }));
+  const postList = await getBlogListFromMDBlog();
 
-      if (!postListClone)
-        return res.status(500).json({ message: "Post list is empty!" });
+  //clone and get some necessary field in postListClone
+  const postListClone: Post[] = cloneDeep(postList);
 
-      //get all postListClone when not exist _page & _limit
-      if (!_page && !_limit)
-        return res.status(200).json({ postList: postListClone });
+  if (!postListClone)
+    return res.status(500).json({ message: "Post list is empty!" });
 
-      //sort postListClone by recent publishedDate field.
-      const sortedPostListClone = sortMaxToMin(postListClone, "publishedDate");
+  //get all postListClone when not exist _page & _limit
+  if (!_page && !_limit)
+    return res.status(200).json({ postList: postListClone });
 
-      const start = _page === 1 ? 0 : (_page - 1) * _limit;
+  //sort postListClone by recent publishedDate field.
+  const sortedPostListClone = sortMaxToMin(postListClone, "publishedDate");
 
-      //divide postListClone into four item per page
-      const postListPerPage: Post[] = sortedPostListClone.splice(start, _limit);
+  const start = _page === 1 ? 0 : (_page - 1) * _limit;
 
-      const totalPage = Math.ceil(postListClone.length / _limit);
+  //divide postListClone into four item per page
+  const postListPerPage: Post[] = sortedPostListClone.splice(start, _limit);
 
-      const dataRes = {
-        postList: postListPerPage,
-        pagination: {
-          total: totalPage,
-          limit: _limit,
-        },
-      };
-      return res.status(200).json(dataRes);
-    })
-    .catch((error) =>
-      res.status(500).json({ message: "Error Internet Sever" })
-    );
+  const totalPage = Math.ceil(postListClone.length / _limit);
+
+  //get postListClone when exist _page & _limit
+  const dataRes = {
+    postList: postListPerPage,
+    pagination: {
+      total: totalPage,
+      limit: _limit,
+    },
+  };
+  return res.status(200).json(dataRes);
 }

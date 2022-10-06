@@ -1,12 +1,12 @@
+import { blogApi } from "@/apiClient";
 import { Seo } from "@/components/common";
+import { Post } from "@/models";
+import MaterialTable from "@material-table/core";
 import { Box, Typography } from "@mui/material";
 import { AdminLayout } from "components/layout";
-
-import MaterialTable from "@material-table/core";
-import { useEffect, useState } from "react";
-import { Post } from "@/models";
-import { blogApi } from "@/apiClient";
 import { format } from "date-fns";
+import { useEffect, useState } from "react";
+
 
 interface PostDataTable {
   id: string;
