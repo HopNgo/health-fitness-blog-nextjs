@@ -64,6 +64,11 @@ export default function BlogListPage({
 export const getServerSideProps: GetServerSideProps = async (
   context: GetServerSidePropsContext
 ) => {
+  context.res.setHeader(
+    "Cache-Control",
+    "public, s-maxage=10, stale-while-revalidate"
+  );
+
   const page = Number(context.query.page as string) || 1;
 
   const { data } = await blogApi.getPostListPerPage(page, 4);
