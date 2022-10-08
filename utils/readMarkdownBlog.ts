@@ -1,3 +1,4 @@
+import { sortMaxToMin } from "./sort";
 import { Post } from "@/models";
 import fs from "fs";
 import matter from "gray-matter";
@@ -33,6 +34,8 @@ export async function getBlogListFromMDBlog(): Promise<Post[]> {
       ),
     });
   }
+  //sort postList by recent publishedDate field.
+  const sortedPostList = sortMaxToMin(postList, "publishedDate");
 
-  return postList;
+  return sortedPostList;
 }

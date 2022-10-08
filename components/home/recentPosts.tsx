@@ -1,6 +1,10 @@
 import { Post } from "@/models";
 import {
-  Box, Container, Link as MuiLink, Stack, Typography
+  Box,
+  Container,
+  Link as MuiLink,
+  Stack,
+  Typography,
 } from "@mui/material";
 import Link from "next/link";
 import * as React from "react";
@@ -24,7 +28,7 @@ export function RecentPostsSection({
           <Typography fontSize="22px" component="span" lineHeight="64px">
             Recent Posts
           </Typography>
-          <Link href="/blog/1" passHref>
+          <Link href="/blog" passHref>
             <MuiLink color="text.secondary">View All</MuiLink>
           </Link>
         </Stack>

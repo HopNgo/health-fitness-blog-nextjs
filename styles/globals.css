@@ -35,7 +35,7 @@ p {
 }
 
 .lds-spinner {
-  color: rgba(0, 0, 0, 0.5);
+  color: rgba(0, 0, 0, 0.4);
   display: inline-block;
   position: relative;
   width: 80px;

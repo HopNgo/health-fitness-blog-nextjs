@@ -1,4 +1,4 @@
-import { Seo } from "@/components/common";
+import { Loading, Seo } from "@/components/common";
 import { MainLayout } from "@/components/layout";
 import { Post } from "@/models";
 import { getBlogListFromMDBlog } from "@/utils";
@@ -6,6 +6,7 @@ import { Box, Container, Stack, Typography } from "@mui/material";
 import { format } from "date-fns";
 import { GetStaticPaths, GetStaticProps, GetStaticPropsContext } from "next";
 import Image from "next/image";
+import { useRouter } from "next/router";
 import * as React from "react";
 
 export interface IBlogDetailPageProps {
@@ -13,14 +14,16 @@ export interface IBlogDetailPageProps {
 }
 
 export default function BlogDetailPage({ post }: IBlogDetailPageProps) {
-  console.log(post);
+  const router = useRouter();
+
+  if (router.isFallback) return <Loading />;
   return (
     <Box pt="60px">
       <Seo
         data={{
           title: `${post.title} | Health And Fitness Education`,
           description: post.description,
-          url: "",
+          url: `https://health-fitness-blog.vercel.app/blog/${post.slug}`,
           thumbnailUrl:
             post.author?.avatarUrl ||
             "https://res.cloudinary.com/dquveexgp/image/upload/v1664418633/learn-nextjs/healthy-lifestyle_mek8fy.webp",
@@ -142,13 +145,15 @@ export default function BlogDetailPage({ post }: IBlogDetailPageProps) {
 export const getStaticPaths: GetStaticPaths = async () => {
   const postList = await getBlogListFromMDBlog();
 
-  const paths: { params: { slug: string } }[] = postList.map((post: Post) => ({
-    params: { slug: post.slug },
-  }));
+  const paths: { params: { slug: string } }[] = postList
+    .slice(0, 10)
+    .map((post: Post) => ({
+      params: { slug: post.slug },
+    }));
 
   return {
     paths,
-    fallback: false,
+    fallback: true,
   };
 };
 
@@ -160,12 +165,14 @@ export const getStaticProps: GetStaticProps = async (
   // get All postList
   const postList = await getBlogListFromMDBlog();
 
+  //get postDetail in postList
   const postDetail = postList.find((post: Post) => post.slug === slug);
 
   if (!postDetail) return { notFound: true };
 
   return {
     props: { post: postDetail },
+    revalidate: 59,
   };
 };
 

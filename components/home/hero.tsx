@@ -93,6 +93,8 @@ export function HeroSection() {
               layout="fixed"
               objectFit="cover"
               alt="Avatar"
+              blurDataURL={`data:${avatar}`}
+              placeholder="blur"
             />
           </Box>
         </Stack>

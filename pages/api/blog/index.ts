@@ -31,15 +31,12 @@ export default async function handler(
   if (!_page && !_limit)
     return res.status(200).json({ postList: postListClone });
 
-  //sort postListClone by recent publishedDate field.
-  const sortedPostListClone = sortMaxToMin(postListClone, "publishedDate");
-
   const start = _page === 1 ? 0 : (_page - 1) * _limit;
 
   //divide postListClone into four item per page
-  const postListPerPage: Post[] = sortedPostListClone.splice(start, _limit);
+  const postListPerPage: Post[] = postListClone.splice(start, _limit);
 
-  const totalPage = Math.ceil(postListClone.length / _limit);
+  const totalPage = Math.ceil(postList.length / _limit);
 
   //get postListClone when exist _page & _limit
   const dataRes = {

@@ -33,7 +33,7 @@ export default function BlogListPage({
         data={{
           title: "Post List | Health And Fitness Education Blogs",
           description: "Some posts about take care of the healthy people ",
-          url: "",
+          url: `https://health-fitness-blog.vercel.app/blog?page=${page}`,
           thumbnailUrl:
             "https://res.cloudinary.com/dquveexgp/image/upload/v1664418633/learn-nextjs/healthy-lifestyle_mek8fy.webp",
         }}

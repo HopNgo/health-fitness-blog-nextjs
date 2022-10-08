@@ -22,7 +22,7 @@ const HomePage = ({ twoRecentPosts }: HomePageProps) => {
           title: "Home | Health And Fitness Education Blogs",
           description:
             "The website shows some blogs about how to take care of the human health",
-          url: "",
+          url: "https://health-fitness-blog.vercel.app/",
           thumbnailUrl:
             "https://res.cloudinary.com/dquveexgp/image/upload/v1664418633/learn-nextjs/healthy-lifestyle_mek8fy.webp",
         }}

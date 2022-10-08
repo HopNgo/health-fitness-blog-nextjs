@@ -12,7 +12,8 @@ export function Loading() {
       display="flex"
       justifyContent="center"
       alignItems="center"
-      bgcolor="rgba(0,0,0,0.2)"
+      bgcolor="rgba(0,0,0,0.1)"
+      zIndex={999999}
     >
       <Box className="lds-spinner">
         <Box></Box>

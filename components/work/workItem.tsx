@@ -31,6 +31,8 @@ export default function WorkItem({ work }: IWorkItemProps) {
             height="200px"
             objectFit="cover"
             alt="not found"
+            blurDataURL={`data:${work.thumbnailUrl}`}
+            placeholder="blur"
           />
         </Box>
         <Stack maxWidth="590px" gap="17px" py="20px">
