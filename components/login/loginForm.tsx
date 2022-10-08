@@ -24,7 +24,7 @@ export function LoginForm({ onLogin }: LoginFormProps) {
   });
 
   const onSubmit = async (data: LoginPayload) => {
-    console.log(data);
+   
     try {
       await onLogin(data);
       router.push("/admin/blogs");

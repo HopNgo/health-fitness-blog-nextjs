@@ -24,7 +24,7 @@ export default function BlogListPage({
 
   useEffect(() => {
     Router.push(`/blog?page=${page}`);
-    console.log("render useeffect");
+   
   }, [page]);
 
   return (

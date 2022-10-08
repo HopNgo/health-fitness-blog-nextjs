@@ -2,7 +2,7 @@ import { Seo } from "@/components/common";
 import {
   FeatureWorksSection,
   HeroSection,
-  RecentPostsSection
+  RecentPostsSection,
 } from "@/components/home";
 import { Post } from "@/models";
 import { getBlogListFromMDBlog } from "@/utils";
@@ -15,6 +15,7 @@ export interface HomePageProps {
 }
 
 const HomePage = ({ twoRecentPosts }: HomePageProps) => {
+  console.log(process.env.MY_SECRET_REVALIDATE_TOKEN);
   return (
     <Box>
       <Seo

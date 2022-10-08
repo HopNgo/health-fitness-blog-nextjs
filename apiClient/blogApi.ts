@@ -10,4 +10,7 @@ export const blogApi = {
   deletePost: (id: string) => {
     return axiosClient.delete(`/blog/update/${id}`);
   },
+  revalidateBlogDetailPage: (secret: string, slug: string) => {
+    return axiosClient.get(`/revalidate?secret=${secret}&slug=${slug}`);
+  },
 };

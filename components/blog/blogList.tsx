@@ -9,7 +9,7 @@ export interface IBlogListProps {
 }
 
 export function BlogList({ blogList }: IBlogListProps) {
-  console.log(blogList);
+ 
   return (
     <Box>
       <Container>

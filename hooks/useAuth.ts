@@ -20,7 +20,7 @@ export const useAuth = (options?: Partial<PublicConfiguration>) => {
     await mutate({}, false);
   };
   const response: any = data;
-  console.log(data);
+
   const profile = response?.data;
   return {
     profile,

@@ -6,7 +6,7 @@ type Data = {
 };
 const BLOG_FOLDER = path.join(process.cwd(), "blogMarkdown");
 
-export default function handler(
+export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse<Data>
 ) {

@@ -7,7 +7,6 @@ import { AdminLayout } from "components/layout";
 import { format } from "date-fns";
 import { useEffect, useState } from "react";
 
-
 interface PostDataTable {
   id: string;
   order: number;
@@ -15,6 +14,7 @@ interface PostDataTable {
   publishedDate: string;
   tagList: string[];
   author: string;
+  slug: string;
 }
 
 export interface IAdminPageProps {}
@@ -49,6 +49,7 @@ export default function AdminPage(props: IAdminPageProps) {
           publishedDate: format(Number(post.publishedDate), "dd MMM yyyy"),
           tagList: post.tagList.join(", "),
           author: post.author?.name || "",
+          slug: post.slug,
         }))
       );
     };
@@ -112,6 +113,14 @@ export default function AdminPage(props: IAdminPageProps) {
                     );
 
                     setPosts(postsToBeSetstate);
+
+                    console.log(process.env.MY_SECRET_REVALIDATE_TOKEN);
+
+                    //revalidate blog detail
+                    blogApi.revalidateBlogDetailPage(
+                      process.env.MY_SECRET_REVALIDATE_TOKEN || "",
+                      selectedRow.slug
+                    );
                   });
                   resolve(undefined);
                 }, 600);

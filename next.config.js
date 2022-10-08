@@ -10,6 +10,9 @@ const nextConfig = {
 
     return config;
   },
+  env: {
+    MY_SECRET_REVALIDATE_TOKEN: process.env.MY_SECRET_REVALIDATE_TOKEN,
+  },
 };
 
 module.exports = nextConfig;
