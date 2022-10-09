@@ -1,6 +1,6 @@
 import { Box } from "@mui/material";
 import { ReactNode } from "react";
-
+import BG_AUTH from "@/public/images/bg-health-and-fitness.jpg";
 export interface IAuthLayoutProps {
   children: ReactNode;
 }
@@ -10,7 +10,7 @@ export function AuthLayout({ children }: IAuthLayoutProps) {
     <Box
       minHeight="100vh"
       sx={{
-        backgroundImage: `url("https://res.cloudinary.com/dquveexgp/image/upload/v1665021908/learn-nextjs/bg-health-and-fitness_zat4iv.jpg")`,
+        backgroundImage: `url("/images/bg-health-and-fitness.jpg")`,
         backgroundSize: "cover",
       }}
     >

@@ -12,7 +12,7 @@ export function FeatureWorksSection(props: IFeatureWorksSectionProps) {
       title: "The Importance of Connecting Your Health with Others",
       tagList: ["Health, Happiness"],
       thumbnailUrl:
-        "https://res.cloudinary.com/dquveexgp/image/upload/v1665027205/learn-nextjs/bigstock-Young-woman-with-kids-doing-fi-397381001-scaled_msjelr.jpg",
+        "https://res.cloudinary.com/dquveexgp/image/upload/v1665286283/learn-nextjs/bigstock-Young-woman-with-kids-doing-fi-397381001-scaled_msjelr_qg7ouj.jpg",
       shortDescription:
         "CFW Health Fitness Specialist Connection and socialization are key components to mental health and happiness. You might wonder, how can socializing help you live a healthier lifestyle?",
       fullDescription:
@@ -25,7 +25,7 @@ export function FeatureWorksSection(props: IFeatureWorksSectionProps) {
       title: "CFW Listed as Top Corporate Fitness Program Leading the Pack",
       tagList: ["Managing Fitness Programs"],
       thumbnailUrl:
-        "https://res.cloudinary.com/dquveexgp/image/upload/v1665027424/learn-nextjs/City-Fitness-Center-1536x864_e3m4tq.png",
+        "https://res.cloudinary.com/dquveexgp/image/upload/v1665286224/learn-nextjs/City-Fitness-Center-1536x864_e3m4tq_kgbhi6.jpg",
       shortDescription:
         "At CFW, we are passionate about delivering our expertise through onsite and digital fitness to help individuals and organizations be at their very best. This passion is at the core of every CFW Program.",
       fullDescription:
@@ -38,7 +38,7 @@ export function FeatureWorksSection(props: IFeatureWorksSectionProps) {
       title: "F is for Fitness and Fun",
       tagList: ["Hiking", "Exercise"],
       thumbnailUrl:
-        "https://res.cloudinary.com/dquveexgp/image/upload/v1665027514/learn-nextjs/bigstock-Young-Couple-On-Tennis-Court-449311937-scaled_zf5skm.jpg",
+        "https://res.cloudinary.com/dquveexgp/image/upload/v1665286140/learn-nextjs/res-console.cloudinary_kd5gk5.jpg",
       shortDescription:
         "Health Fitness Specialist Are you someone who dreads working out? Cannot seem to find any fun ways to stay active?  Exercise does not always have to mean running on a treadmill or picking up weights.",
       fullDescription:
@@ -51,7 +51,7 @@ export function FeatureWorksSection(props: IFeatureWorksSectionProps) {
       title: "Moving Well In All Aspects of Life",
       tagList: ["Ergonomics"],
       thumbnailUrl:
-        "https://res.cloudinary.com/dquveexgp/image/upload/v1665027633/learn-nextjs/bigstock-Correct-Posture-At-Desk-In-Off-436249187-1536x1024_mgtfud.jpg",
+        "https://res.cloudinary.com/dquveexgp/image/upload/v1665286332/learn-nextjs/res-console.cloudinary_1_tnmx08.jpg",
       shortDescription:
         "Ergonomics can be defined as a science of determining how people and things can work efficiently and safely. If you’re ready to feel better, listed below are key items to move well at work, during daily activities, and while exercising.",
       fullDescription:

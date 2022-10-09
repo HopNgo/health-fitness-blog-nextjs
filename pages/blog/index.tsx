@@ -5,8 +5,9 @@ import { Post } from "@/models";
 import { Box, Container, Pagination, Stack, Typography } from "@mui/material";
 import { MainLayout } from "components/layout";
 import { GetServerSideProps, GetServerSidePropsContext } from "next";
-import Router from "next/router";
+import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
+
 export interface BlogListPageProps {
   postList: Post[];
   totalPage: number;
@@ -16,15 +17,16 @@ export default function BlogListPage({
   postList,
   totalPage,
 }: BlogListPageProps) {
-  const [page, setPage] = useState<number>(1);
+  const router = useRouter();
+  const [page, setPage] = useState<number | undefined>();
 
   const handleChange = (event: React.ChangeEvent<unknown>, value: number) => {
     setPage(value);
   };
 
   useEffect(() => {
-    Router.push(`/blog?page=${page}`);
-   
+    if (!page) return;
+    router.push(`/blog?page=${page}`);
   }, [page]);
 
   return (
@@ -52,7 +54,7 @@ export default function BlogListPage({
             variant="outlined"
             shape="rounded"
             count={totalPage}
-            page={page}
+            page={page || 1}
             onChange={handleChange}
           />
         </Stack>

@@ -1,4 +1,6 @@
 import { axiosClient } from "@/apis";
+import { Loading } from "@/components/common";
+import { usePageLoading } from "@/hooks";
 import { AppPropsWithLayout } from "@/models";
 import { createEmotionCache, theme } from "@/utils";
 import { CacheProvider } from "@emotion/react";
@@ -17,6 +19,7 @@ function MyApp({
   emotionCache = clientSideEmotionCache,
 }: AppPropsWithLayout) {
   const Layout = Component.Layout ?? EmptyLayout;
+  const { isPageLoading }: { isPageLoading: boolean } = usePageLoading();
   return (
     <CacheProvider value={emotionCache}>
       <Head>
@@ -31,6 +34,7 @@ function MyApp({
           }}
         >
           <Layout>
+            {isPageLoading && <Loading />}
             <Component {...pageProps} />
           </Layout>
         </SWRConfig>
