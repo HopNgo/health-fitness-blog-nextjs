@@ -1,15 +1,14 @@
-import { Post } from "@/models";
+import { Post, PostOmitForBlogListPage } from "@/models";
 import { Box, Container } from "@mui/material";
 import Link from "next/link";
 import * as React from "react";
 import BlogItem from "./blogItem";
 
 export interface IBlogListProps {
-  blogList: Post[];
+  blogList: PostOmitForBlogListPage[];
 }
 
 export function BlogList({ blogList }: IBlogListProps) {
- 
   return (
     <Box>
       <Container>

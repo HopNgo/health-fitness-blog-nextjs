@@ -1,4 +1,4 @@
-import { Post } from "@/models";
+import { Post, PostOmitForBlogListPage } from "@/models";
 import { getBlogListFromMDBlog, sortMaxToMin } from "@/utils";
 import { cloneDeep } from "lodash";
 import { NextApiRequest, NextApiResponse } from "next";
@@ -7,7 +7,7 @@ type DataError = {
   message?: string;
 };
 type DataSuccess = {
-  postList: Post[];
+  postList: PostOmitForBlogListPage[];
 };
 
 export default async function handler(
@@ -22,7 +22,16 @@ export default async function handler(
   const postList = await getBlogListFromMDBlog();
 
   //clone and get some necessary field in postListClone
-  const postListClone: Post[] = cloneDeep(postList);
+  const postListClone: PostOmitForBlogListPage[] = cloneDeep(postList).map(
+    (post: Post) => ({
+      id: post.id,
+      title: post.title,
+      tagList: post.tagList,
+      description: post.description,
+      slug: post.slug,
+      publishedDate: post.publishedDate,
+    })
+  );
 
   if (!postListClone)
     return res.status(500).json({ message: "Post list is empty!" });
@@ -34,7 +43,10 @@ export default async function handler(
   const start = _page === 1 ? 0 : (_page - 1) * _limit;
 
   //divide postListClone into four item per page
-  const postListPerPage: Post[] = postListClone.splice(start, _limit);
+  const postListPerPage: PostOmitForBlogListPage[] = postListClone.splice(
+    start,
+    _limit
+  );
 
   const totalPage = Math.ceil(postList.length / _limit);
 

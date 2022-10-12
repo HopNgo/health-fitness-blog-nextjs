@@ -1,9 +1,9 @@
-import { Post } from "@/models";
+import { Post, PostOmitForBlogListPage } from "@/models";
 import { Box, Divider, Stack, Typography } from "@mui/material";
 import { format } from "date-fns";
 import * as React from "react";
 export interface IBlogItemProps {
-  post: Post;
+  post: PostOmitForBlogListPage;
 }
 
 export default function BlogItem({ post }: IBlogItemProps) {

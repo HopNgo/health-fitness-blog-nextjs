@@ -6,6 +6,7 @@ import { createEmotionCache, theme } from "@/utils";
 import { CacheProvider } from "@emotion/react";
 import CssBaseline from "@mui/material/CssBaseline";
 import { ThemeProvider } from "@mui/material/styles";
+import { AxiosResponse } from "axios";
 import { EmptyLayout } from "components/layout";
 import Head from "next/head";
 import { SWRConfig } from "swr";
@@ -29,7 +30,8 @@ function MyApp({
         <CssBaseline />
         <SWRConfig
           value={{
-            fetcher: (url) => axiosClient.get(url),
+            fetcher: (url) =>
+              axiosClient.get(url).then((res: AxiosResponse) => res.data),
             shouldRetryOnError: false,
           }}
         >

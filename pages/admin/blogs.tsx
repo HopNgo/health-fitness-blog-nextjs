@@ -88,7 +88,7 @@ export default function AdminPage(props: IAdminPageProps) {
         title={"Health & Fitness Blogs"}
         isLoading={posts ? false : true}
         editable={{
-          onRowDelete: (selectedRow: any) =>
+          onRowDelete: (selectedRow: PostDataTable) =>
             new Promise((resolve) => {
               if (posts)
                 setTimeout(() => {

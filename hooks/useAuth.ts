@@ -4,7 +4,12 @@ import useSWR from "swr";
 import { PublicConfiguration } from "swr/dist/types";
 
 export const useAuth = (options?: Partial<PublicConfiguration>) => {
-  const { data, isValidating, error, mutate } = useSWR(`/profile`, {
+  const {
+    data: profile,
+    isValidating,
+    error,
+    mutate,
+  } = useSWR(`/profile`, {
     dedupingInterval: 60 * 60 * 1000,
     revalidateOnFocus: false,
     ...options,
@@ -19,9 +24,7 @@ export const useAuth = (options?: Partial<PublicConfiguration>) => {
     await authApi.logout();
     await mutate({}, false);
   };
-  const response: any = data;
 
-  const profile = response?.data;
   return {
     profile,
     isValidating,

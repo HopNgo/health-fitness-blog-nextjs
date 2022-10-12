@@ -24,7 +24,6 @@ export function LoginForm({ onLogin }: LoginFormProps) {
   });
 
   const onSubmit = async (data: LoginPayload) => {
-   
     try {
       await onLogin(data);
       router.push("/admin/blogs");
@@ -88,6 +87,7 @@ export function LoginForm({ onLogin }: LoginFormProps) {
             id="password"
             label="Password"
             type="password"
+            autoComplete="on"
             variant="outlined"
             onChange={() => clearErrors("password")}
             error={Boolean(errors.password?.type)}

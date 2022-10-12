@@ -1,15 +1,16 @@
 import { blogApi } from "@/apiClient";
 import { BlogList } from "@/components/blog";
 import { Seo } from "@/components/common";
-import { Post } from "@/models";
+import { Post, PostOmitForBlogListPage } from "@/models";
 import { Box, Container, Pagination, Stack, Typography } from "@mui/material";
+import { AxiosResponse } from "axios";
 import { MainLayout } from "components/layout";
 import { GetServerSideProps, GetServerSidePropsContext } from "next";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 
 export interface BlogListPageProps {
-  postList: Post[];
+  postList: PostOmitForBlogListPage[];
   totalPage: number;
 }
 
@@ -71,12 +72,16 @@ export const getServerSideProps: GetServerSideProps = async (
     "public, s-maxage=10, stale-while-revalidate"
   );
 
-  const page = Number(context.query.page as string) || 1;
+  const page: number = Number(context.query.page as string) || 1;
 
-  const { data } = await blogApi.getPostListPerPage(page, 4);
+  const res: AxiosResponse = await blogApi.getPostListPerPage(page, 4);
+
+  const postListProps: PostOmitForBlogListPage[] = res.data.postList;
+
+  const totalPageProps: number = res.data.pagination.total;
 
   return {
-    props: { postList: data.postList, totalPage: data.pagination.total },
+    props: { postList: postListProps, totalPage: totalPageProps },
   };
 };
 

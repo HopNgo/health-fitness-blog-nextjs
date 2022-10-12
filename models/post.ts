@@ -10,6 +10,8 @@ export interface Post {
   tagList: string[];
   description: string;
   slug: string;
-  author?: Author;
+  author: Author;
   htmlContent?: string;
 }
+
+export type PostOmitForBlogListPage = Omit<Post, "author" | "htmlContent">;
