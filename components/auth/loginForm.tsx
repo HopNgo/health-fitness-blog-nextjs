@@ -1,8 +1,11 @@
+import { InputField } from "@/components/common/form";
 import { LoginPayload } from "@/models";
-import { Box, Button, Stack, TextField, Typography } from "@mui/material";
+import { Box, Button, Stack, Typography } from "@mui/material";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import { useForm } from "react-hook-form";
+import * as yup from "yup";
+import { yupResolver } from "@hookform/resolvers/yup";
 
 interface LoginFormProps {
   onLogin: Function;
@@ -11,23 +14,27 @@ interface LoginFormProps {
 export function LoginForm({ onLogin }: LoginFormProps) {
   const router = useRouter();
 
-  const {
-    register,
-    handleSubmit,
-    clearErrors,
-    formState: { errors },
-  } = useForm<LoginPayload>({
+  const schema = yup.object().shape({
+    username: yup.string().required().min(6),
+    password: yup.string().required().min(8),
+  });
+
+  const { control, handleSubmit } = useForm<LoginPayload>({
+    mode: "onTouched",
     defaultValues: {
       username: "",
       password: "",
     },
+    resolver: yupResolver(schema),
   });
 
   const onSubmit = async (data: LoginPayload) => {
     try {
       await onLogin(data);
       router.push("/admin/blogs");
-    } catch (error) {}
+    } catch (error) {
+      console.log(error);
+    }
   };
   //
   return (
@@ -55,7 +62,7 @@ export function LoginForm({ onLogin }: LoginFormProps) {
           fontStyle="italic"
           color="#FFCC00"
         >
-          * Username must be more than 6 characters
+          * Username must be at least 6 characters
         </Typography>
         <Typography
           component="span"
@@ -64,40 +71,20 @@ export function LoginForm({ onLogin }: LoginFormProps) {
           color="#FFCC00"
           mb="30px"
         >
-          * Password must be more than 8 characters
+          * Password must be at least 8 characters
         </Typography>
         <Box component="form">
-          <TextField
-            {...register("username", { required: true, minLength: 6 })}
-            id="username"
-            label="Username"
-            variant="outlined"
-            onChange={() => clearErrors("username")}
-            error={Boolean(errors.username?.type)}
-            helperText={
-              (errors.username?.type === "required" &&
-                "* Username is required") ||
-              (errors.username?.type === "minLength" &&
-                "* Username must be more than 6 characters")
-            }
-            sx={{ width: "100%", mb: "20px" }}
+          <InputField
+            name="username"
+            label="username"
+            type="text"
+            control={control}
           />
-          <TextField
-            {...register("password", { required: true, minLength: 8 })}
-            id="password"
-            label="Password"
+          <InputField
+            name="password"
+            label="password"
             type="password"
-            autoComplete="on"
-            variant="outlined"
-            onChange={() => clearErrors("password")}
-            error={Boolean(errors.password?.type)}
-            helperText={
-              (errors.password?.type === "required" &&
-                "* Password is required") ||
-              (errors.password?.type === "minLength" &&
-                "* Password must be more than 8 characters")
-            }
-            sx={{ width: "100%", mb: "30px" }}
+            control={control}
           />
           <Button
             onClick={handleSubmit(onSubmit)}

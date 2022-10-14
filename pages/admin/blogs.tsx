@@ -114,7 +114,7 @@ export default function AdminPage(props: IAdminPageProps) {
 
                     setPosts(postsToBeSetstate);
 
-                    console.log(process.env.MY_SECRET_REVALIDATE_TOKEN);
+      
 
                     //revalidate blog detail
                     blogApi.revalidateBlogDetailPage(

@@ -4,3 +4,4 @@ export * from "./routeHeader";
 export * from "./post";
 export * from "./work";
 export * from "./path";
+export * from "./profile";

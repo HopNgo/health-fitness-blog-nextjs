@@ -1,6 +1,6 @@
 import { Loading, Seo } from "@/components/common";
 import { AuthLayout } from "@/components/layout";
-import { LoginForm } from "@/components/login";
+import { LoginForm } from "@/components/auth";
 import { useAuth } from "@/hooks";
 import { Box, Stack } from "@mui/material";
 export interface ILoginPageProps {}

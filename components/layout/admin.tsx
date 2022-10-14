@@ -1,4 +1,5 @@
 import { useAuth } from "@/hooks";
+import { Profile } from "@/models";
 import LOGO from "@/public/images/logo.svg";
 import LogoutIcon from "@mui/icons-material/Logout";
 import NewspaperIcon from "@mui/icons-material/Newspaper";
@@ -89,7 +90,7 @@ export function AdminLayout({ children }: IAdminLayoutProps) {
                       fontSize="18px"
                       fontWeight="700"
                     >
-                      {profile?.username || "Admin"}
+                      {profile?.username}
                     </Typography>
                   </Stack>
                 </Stack>

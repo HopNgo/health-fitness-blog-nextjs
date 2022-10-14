@@ -1,15 +1,10 @@
 import { authApi } from "@/apis";
-import { LoginPayload } from "@/models";
-import useSWR from "swr";
+import { LoginPayload, Profile } from "@/models";
+import useSWR, { SWRResponse } from "swr";
 import { PublicConfiguration } from "swr/dist/types";
 
 export const useAuth = (options?: Partial<PublicConfiguration>) => {
-  const {
-    data: profile,
-    isValidating,
-    error,
-    mutate,
-  } = useSWR(`/profile`, {
+  const { data, isValidating, error, mutate } = useSWR(`/profile`, {
     dedupingInterval: 60 * 60 * 1000,
     revalidateOnFocus: false,
     ...options,
@@ -22,9 +17,9 @@ export const useAuth = (options?: Partial<PublicConfiguration>) => {
 
   const logout = async () => {
     await authApi.logout();
-    await mutate({}, false);
+    await mutate(null, false);
   };
-
+  const profile: Profile = data as Profile;
   return {
     profile,
     isValidating,

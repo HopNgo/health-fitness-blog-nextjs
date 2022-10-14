@@ -31,7 +31,9 @@ function MyApp({
         <SWRConfig
           value={{
             fetcher: (url) =>
-              axiosClient.get(url).then((res: AxiosResponse) => res.data),
+              axiosClient
+                .get(url)
+                .then((res: AxiosResponse<any, any>) => res.data),
             shouldRetryOnError: false,
           }}
         >

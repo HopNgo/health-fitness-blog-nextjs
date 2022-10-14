@@ -1,4 +1,5 @@
 import { useAuth } from "@/hooks";
+import { Profile } from "@/models";
 import { useRouter } from "next/router";
 import { ReactNode } from "react";
 import { Loading } from "./loading";
@@ -9,11 +10,12 @@ export interface IAuthProps {
 
 export function Auth({ children }: IAuthProps) {
   const { profile, isValidating } = useAuth();
+
   const router = useRouter();
 
   if (isValidating) return <Loading />;
 
-  if (!profile?.username && !isValidating) {
+  if (!profile && !isValidating) {
     router.push({
       pathname: "/login",
     });
